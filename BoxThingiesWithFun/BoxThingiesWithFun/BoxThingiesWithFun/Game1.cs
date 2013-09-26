@@ -18,7 +18,9 @@ namespace BoxThingiesWithFun
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
+        Texture2D square;
+        Rectangle CheckerBoardWhite = new Rectangle(0, 0, 15, 15);
+        Rectangle CheckerBoardBlack = new Rectangle(15, 0, 15, 15);
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -46,6 +48,7 @@ namespace BoxThingiesWithFun
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
+            square = Content.Load<Texture2D>("Square");
 
             // TODO: use this.Content to load your game content here
         }
@@ -71,8 +74,22 @@ namespace BoxThingiesWithFun
                 this.Exit();
 
             // TODO: Add your update logic here
-
+            base.Initialize();
+            this.IsMouseVisible = true;
+ 
             base.Update(gameTime);
+        }
+
+        public void DrawCheckerBoard()
+        {
+            for (int i = 0; i < 100; i++)
+            {
+                spriteBatch.Begin();
+                spriteBatch.Draw(square, CheckerBoardWhite, Color.WhiteSmoke);
+                spriteBatch.Draw(square, CheckerBoardBlack, Color.Black);
+                spriteBatch.End();
+                
+            }
         }
 
         /// <summary>
@@ -81,9 +98,13 @@ namespace BoxThingiesWithFun
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Gray);
 
             // TODO: Add your drawing code here
+            // DrawBlankScreen();
+            DrawCheckerBoard();
+            // DrawRainbow();
+            // DrawCrazySquares();
 
             base.Draw(gameTime);
         }
