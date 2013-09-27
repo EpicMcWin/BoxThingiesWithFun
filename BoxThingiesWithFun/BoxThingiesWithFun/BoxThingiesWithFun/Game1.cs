@@ -19,8 +19,8 @@ namespace BoxThingiesWithFun
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Texture2D square;
-        Rectangle CheckerBoardWhite = new Rectangle(0, 0, 15, 15);
-        Rectangle CheckerBoardBlack = new Rectangle(15, 0, 15, 15);
+        //Rectangle CheckerBoard = new Rectangle(0, 0, 15, 15);
+        //Rectangle CheckerBoardBlack = new Rectangle(15, 0, 15, 15);
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -82,11 +82,28 @@ namespace BoxThingiesWithFun
 
         public void DrawCheckerBoard()
         {
-            for (int i = 0; i < 100; i++)
+            int x = 0;
+            int y = 0;
+            for (int i = 0; i < 10000; i++)
             {
+                
+                
+                Rectangle CheckerBoard = new Rectangle(x, y, 15, 15);
                 spriteBatch.Begin();
-                spriteBatch.Draw(square, CheckerBoardWhite, Color.WhiteSmoke);
-                spriteBatch.Draw(square, CheckerBoardBlack, Color.Black);
+                
+                if (i % 2 == 0)
+                {
+                    spriteBatch.Draw(square, CheckerBoard, Color.White);
+                }
+                else
+                spriteBatch.Draw(square, CheckerBoard, Color.Black);
+                x += 15;
+                if (i % 53 == 52)
+                {
+                    y += 15;
+                    x = 0;
+                }
+
                 spriteBatch.End();
                 
             }
