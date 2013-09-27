@@ -80,6 +80,39 @@ namespace BoxThingiesWithFun
             base.Update(gameTime);
         }
 
+
+        public void DrawRainbow()
+        {
+
+            int x = 0;
+            int y = 0;
+            for (int i = 0; i < 7; i++)
+            {
+                Rectangle Rainbow = new Rectangle(x, y, 115, 800);
+                spriteBatch.Begin();
+                if (i == 0)
+                    spriteBatch.Draw(square, Rainbow, Color.Red);
+               else if (i == 1)
+                    spriteBatch.Draw(square, Rainbow, Color.Orange);
+               else if (i == 2)
+                    spriteBatch.Draw(square, Rainbow, Color.Yellow);
+               else if (i == 3)
+                    spriteBatch.Draw(square, Rainbow, Color.Green);
+               else if (i == 4)
+                    spriteBatch.Draw(square, Rainbow, Color.Blue);
+               else if (i == 5)
+                    spriteBatch.Draw(square, Rainbow, Color.Indigo);
+               else if (i == 6)
+                    spriteBatch.Draw(square, Rainbow, Color.Violet);
+
+                x += 115;
+                
+
+                spriteBatch.End();
+            }
+        }
+        
+
         public void DrawBlankScreen()
         {
             int x = 0;
@@ -138,9 +171,9 @@ namespace BoxThingiesWithFun
             GraphicsDevice.Clear(Color.Gray);
 
             // TODO: Add your drawing code here
-             DrawBlankScreen();
+            //DrawBlankScreen();
             //DrawCheckerBoard();
-            // DrawRainbow();
+             DrawRainbow();
             // DrawCrazySquares();
 
             base.Draw(gameTime);
