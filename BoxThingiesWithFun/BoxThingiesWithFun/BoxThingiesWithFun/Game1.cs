@@ -80,23 +80,43 @@ namespace BoxThingiesWithFun
             base.Update(gameTime);
         }
 
+        public void DrawBlankScreen()
+        {
+            int x = 0;
+            int y = 0;
+            for (int i = 0; i < 10000; i++)
+            {
+                Rectangle BlankRect = new Rectangle(x, y, 14, 14);
+                spriteBatch.Begin();
+
+                spriteBatch.Draw(square, BlankRect, Color.BurlyWood);
+
+                x += 15;
+                if (i % 53 == 52)
+                {
+                    y += 15;
+                    x = 0;
+                }
+
+                spriteBatch.End();
+
+            }
+        }
+
         public void DrawCheckerBoard()
         {
             int x = 0;
             int y = 0;
             for (int i = 0; i < 10000; i++)
             {
-                
-                
                 Rectangle CheckerBoard = new Rectangle(x, y, 15, 15);
                 spriteBatch.Begin();
                 
                 if (i % 2 == 0)
-                {
                     spriteBatch.Draw(square, CheckerBoard, Color.White);
-                }
                 else
-                spriteBatch.Draw(square, CheckerBoard, Color.Black);
+                    spriteBatch.Draw(square, CheckerBoard, Color.Black);
+                
                 x += 15;
                 if (i % 53 == 52)
                 {
@@ -118,8 +138,8 @@ namespace BoxThingiesWithFun
             GraphicsDevice.Clear(Color.Gray);
 
             // TODO: Add your drawing code here
-            // DrawBlankScreen();
-            DrawCheckerBoard();
+             DrawBlankScreen();
+            //DrawCheckerBoard();
             // DrawRainbow();
             // DrawCrazySquares();
 
