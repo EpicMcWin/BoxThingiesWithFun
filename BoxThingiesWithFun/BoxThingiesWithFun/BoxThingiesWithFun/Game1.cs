@@ -162,21 +162,50 @@ namespace BoxThingiesWithFun
             }
         }
 
+        public void DrawCrazySquares()
+        {
+            Random random = new Random();
+            
+            
+            spriteBatch.Begin();
+            for (int i = 0; i < 100; i++)
+            {
+                int randX = random.Next(0, 800);
+                int randY = random.Next(0, 600);
+                Rectangle CrazyTile = new Rectangle(randX, randY, i + 10, i + 10);
+
+
+                spriteBatch.Draw(square, CrazyTile, Color.Black);
+
+
+
+            }
+            spriteBatch.End();
+        }
+
         /// <summary>
         /// This is called when the game should draw itself.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Gray);
+            GraphicsDevice.Clear(Color.White);
 
             // TODO: Add your drawing code here
             //DrawBlankScreen();
             //DrawCheckerBoard();
-             DrawRainbow();
-            // DrawCrazySquares();
+             //DrawRainbow();
+            DrawCrazySquares();
 
             base.Draw(gameTime);
         }
     }
 }
+
+
+//if (i % 2 == 0)
+               // {
+                    //spriteBatch.Draw(square, CrazyTile, Color.Black);
+              //  }
+                //else
+                    //spriteBatch.Draw(square, CrazyTile, Color.Red);
