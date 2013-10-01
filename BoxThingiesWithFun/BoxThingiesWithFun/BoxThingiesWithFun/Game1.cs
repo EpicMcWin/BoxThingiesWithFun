@@ -19,8 +19,6 @@ namespace BoxThingiesWithFun
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Texture2D square;
-        //Rectangle CheckerBoard = new Rectangle(0, 0, 15, 15);
-        //Rectangle CheckerBoardBlack = new Rectangle(15, 0, 15, 15);
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -90,6 +88,7 @@ namespace BoxThingiesWithFun
             {
                 Rectangle Rainbow = new Rectangle(x, y, 115, 800);
                 spriteBatch.Begin();
+
                 if (i == 0)
                     spriteBatch.Draw(square, Rainbow, Color.Red);
                else if (i == 1)
@@ -117,7 +116,7 @@ namespace BoxThingiesWithFun
         {
             int x = 0;
             int y = 0;
-            for (int i = 0; i < 10000; i++)
+            for (int i = 0; i < 2000; i++)
             {
                 Rectangle BlankRect = new Rectangle(x, y, 14, 14);
                 spriteBatch.Begin();
@@ -140,7 +139,7 @@ namespace BoxThingiesWithFun
         {
             int x = 0;
             int y = 0;
-            for (int i = 0; i < 10000; i++)
+            for (int i = 0; i < 2000; i++)
             {
                 Rectangle CheckerBoard = new Rectangle(x, y, 15, 15);
                 spriteBatch.Begin();
@@ -164,20 +163,23 @@ namespace BoxThingiesWithFun
 
         public void DrawCrazySquares()
         {
+            
             Random random = new Random();
-            
-            
             spriteBatch.Begin();
+            Rectangle[] CrazyTile = new Rectangle[100];
             for (int i = 0; i < 100; i++)
             {
-                int randX = random.Next(0, 800);
-                int randY = random.Next(0, 600);
-                Rectangle CrazyTile = new Rectangle(randX, randY, i + 10, i + 10);
+                CrazyTile[i] = new Rectangle(random.Next(0, 800), random.Next (0, 800), 16, 16);
+                
 
+                //spriteBatch.Draw(square, CrazyTile, Color.Black);
 
-                spriteBatch.Draw(square, CrazyTile, Color.Black);
-
-
+                if (i % 2 == 0)
+                 {
+                spriteBatch.Draw(square, CrazyTile[i], Color.Black);
+                  }
+                else
+                spriteBatch.Draw(square, CrazyTile[i], Color.Red);
 
             }
             spriteBatch.End();
@@ -201,11 +203,3 @@ namespace BoxThingiesWithFun
         }
     }
 }
-
-
-//if (i % 2 == 0)
-               // {
-                    //spriteBatch.Draw(square, CrazyTile, Color.Black);
-              //  }
-                //else
-                    //spriteBatch.Draw(square, CrazyTile, Color.Red);
