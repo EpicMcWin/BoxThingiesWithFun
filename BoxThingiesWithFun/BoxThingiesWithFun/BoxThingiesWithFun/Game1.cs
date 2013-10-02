@@ -19,6 +19,8 @@ namespace BoxThingiesWithFun
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         Texture2D square;
+        Rectangle[] CrazyTile = new Rectangle[100];
+        int CurrentScreen = 1;
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -34,7 +36,11 @@ namespace BoxThingiesWithFun
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-
+            Random random = new Random();
+            for (int i = 0; i < 100; i++)
+            {
+               CrazyTile[i] = new Rectangle(random.Next(0, 800), random.Next(0, 600), random.Next(10,100), random.Next(10,100)); 
+            }
             base.Initialize();
         }
 
@@ -72,6 +78,22 @@ namespace BoxThingiesWithFun
                 this.Exit();
 
             // TODO: Add your update logic here
+            KeyboardState kb = Keyboard.GetState();
+            if (kb.IsKeyDown(Keys.D1))
+                CurrentScreen = 1;
+            else if (kb.IsKeyDown(Keys.D2))
+                CurrentScreen = 2;
+            else if (kb.IsKeyDown(Keys.D3))
+                CurrentScreen = 3;
+            else if (kb.IsKeyDown(Keys.D4))
+                CurrentScreen = 4;
+            else if (kb.IsKeyDown(Keys.D5))
+                CurrentScreen = 5;
+            
+
+
+
+
             base.Initialize();
             this.IsMouseVisible = true;
  
@@ -161,26 +183,28 @@ namespace BoxThingiesWithFun
             }
         }
 
+
+        
         public void DrawCrazySquares()
-        {
-            
-            Random random = new Random();
+        { 
             spriteBatch.Begin();
-            Rectangle[] CrazyTile = new Rectangle[100];
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < CrazyTile.Length; i++)
             {
-                CrazyTile[i] = new Rectangle(random.Next(0, 800), random.Next (0, 800), 16, 16);
-                
-
-                //spriteBatch.Draw(square, CrazyTile, Color.Black);
-
-                if (i % 2 == 0)
-                 {
                 spriteBatch.Draw(square, CrazyTile[i], Color.Black);
-                  }
-                else
-                spriteBatch.Draw(square, CrazyTile[i], Color.Red);
+            }
+            spriteBatch.End();
+        }
 
+        public void DrawStatic()
+        {
+            Rectangle StaticTile;
+            Random random = new Random();
+           
+            spriteBatch.Begin();
+            for (int i = 0; i < 50000; i++)
+            {
+                StaticTile = new Rectangle(random.Next(0, 800), random.Next(0, 600), 3, 3);
+                spriteBatch.Draw(square, StaticTile, Color.Black);
             }
             spriteBatch.End();
         }
@@ -194,12 +218,26 @@ namespace BoxThingiesWithFun
             GraphicsDevice.Clear(Color.White);
 
             // TODO: Add your drawing code here
-            //DrawBlankScreen();
-            //DrawCheckerBoard();
-             //DrawRainbow();
+            if (CurrentScreen == 1)
+            DrawBlankScreen();
+            else if (CurrentScreen == 2)
+            DrawCheckerBoard();
+            else if (CurrentScreen == 3)
+            DrawRainbow();
+            else if (CurrentScreen == 4)
             DrawCrazySquares();
+            else if (CurrentScreen == 5)
+            DrawStatic();
 
             base.Draw(gameTime);
         }
     }
 }
+
+
+//if (i % 2 == 0)
+                 //{
+                //spriteBatch.Draw(square, CrazyTile[i], Color.Black);
+                 // }
+               // else
+               // spriteBatch.Draw(square, CrazyTile[i], Color.Red);
